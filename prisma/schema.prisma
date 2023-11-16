@@ -37,5 +37,5 @@ model BusinessCard{
 model InvestedCard{
   id Int @id @default(autoincrement())
   investor UserData @relation(fields: [userId],references: [id])
-  userId Int
+  userId Int 
 }

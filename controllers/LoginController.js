@@ -10,7 +10,11 @@ const LoginController = async (req, res) => {
         },
       })
     if(userdata){
-        res.send(userdata)
+        if(userdata.password == password){
+           res.send(userdata)
+        }else{
+          res.send('incorrect password')
+        }
     }else{
         res.json({"message":"no user found.."})
     }

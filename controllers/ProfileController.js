@@ -3,7 +3,8 @@ const prisma = new PrismaClient()
 
 const ProfileController =async (req,res)=>{
     const id = parseInt(req.params.id);
-    const userdata = await prisma.userData.findUnique({
+    try{
+      const userdata = await prisma.userData.findUnique({
         where: {
           id: id,
         },
@@ -12,6 +13,11 @@ const ProfileController =async (req,res)=>{
         res.send(userdata)
     }else{
         res.json({"message":"no user found.."})
+    }
+    }catch(err){
+      if(err){
+        res.send(err.message)
+      }
     }
 }
 

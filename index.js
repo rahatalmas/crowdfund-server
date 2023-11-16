@@ -6,6 +6,7 @@ const { PrismaClient } = require('@prisma/client')
 const prisma = new PrismaClient()
 
 const userRoutes = require('./routes/userAuthRoute');
+const investRoutes = require('./routes/investRoutes');
 
 app.use(cors());
 app.use(express.json());
@@ -16,7 +17,7 @@ app.get("/",async (req,res)=>{
 })
 
 app.use('/',userRoutes);
-
+app.use('/',investRoutes);
 
 app.listen(PORT,()=>{
   console.log(`server is running on port ${PORT}`);
