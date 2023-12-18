@@ -22,14 +22,15 @@ router.get('/invests/:cardid',async (req,res)=>{
 })
 
 router.post('/postcard/',async (req,res)=>{
-    const {title,headline,reason,pitch,valuation,raised,minInvest,userId} = req.body;
+    let {title,headline,reason,pitch,valuation,raised,minInvest,photo,userId} = req.body;
+    userId = parseInt(userId)
     try{
         const card = await prisma.businessCard.create({
-            data:{title,headline,reason,pitch,valuation,raised,minInvest,userId}
+            data:{title,headline,reason,pitch,valuation,raised,minInvest,photo,userId}
           })
         res.send('created new post '+card.title);
     }catch(err){
-        res.send("something went wrong...")
+        res.send(err.message)
     }
 })
 
